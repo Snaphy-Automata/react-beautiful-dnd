@@ -10,6 +10,7 @@ type Args = {|
   center: Position,
   dragStartTime: number,
   shouldUseTimeDampening: boolean,
+  
 |};
 
 export default ({
@@ -18,6 +19,7 @@ export default ({
   center,
   dragStartTime,
   shouldUseTimeDampening,
+  getContainerRef,
 }: Args): ?Position => {
   const scroll: ?Position = getScroll({
     dragStartTime,
@@ -26,6 +28,20 @@ export default ({
     center,
     shouldUseTimeDampening,
   });
+  //UPDATE: 6th Feb 2019
+  //ROBINS: Adding support for custom scroll ref..
+  const customScrollRef  = getContainerRef?getContainerRef():null
+  //Check if custom container is present or not..
+  if(customScrollRef){
+    if(scroll){
+      const leftX = scroll.x;
+      if(leftX){
+        customScrollRef.scrollLeft = customScrollRef.scrollLeft + leftX;
+      }
+    }
+    return null;
+  }else{
+    return scroll && canScrollWindow(viewport, scroll) ? scroll : null;
+  }
 
-  return scroll && canScrollWindow(viewport, scroll) ? scroll : null;
 };

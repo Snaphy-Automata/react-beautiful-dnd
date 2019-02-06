@@ -26,6 +26,7 @@ type WhileDragging = {|
 export default ({
   scrollWindow,
   scrollDroppable,
+  getContainerRef,
 }: PublicArgs): FluidScroller => {
   const scheduleWindowScroll = rafSchd(scrollWindow);
   const scheduleDroppableScroll = rafSchd(scrollDroppable);
@@ -41,6 +42,7 @@ export default ({
       scrollDroppable: scheduleDroppableScroll,
       dragStartTime,
       shouldUseTimeDampening,
+      getContainerRef,
     });
   };
 
@@ -65,6 +67,7 @@ export default ({
       shouldUseTimeDampening: false,
       scrollWindow: fakeScrollCallback,
       scrollDroppable: fakeScrollCallback,
+      getContainerRef,
     });
 
     dragging = {

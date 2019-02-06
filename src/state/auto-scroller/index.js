@@ -15,11 +15,13 @@ export type Args = {|
 export default ({
   scrollDroppable,
   scrollWindow,
+  getContainerRef,
   move,
 }: Args): AutoScroller => {
   const fluidScroller: FluidScroller = createFluidScroller({
     scrollWindow,
     scrollDroppable,
+    getContainerRef,
   });
 
   const jumpScroll: JumpScroller = createJumpScroller({

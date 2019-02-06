@@ -130,6 +130,7 @@ export default class DragDropContext extends React.Component<Props> {
     this.autoScroller = createAutoScroller({
       scrollWindow,
       scrollDroppable: this.dimensionMarshal.scrollDroppable,
+      getContainerRef: this.props.getContainerRef,
       ...bindActionCreators(
         {
           move,

@@ -26,6 +26,7 @@ export default ({
   shouldUseTimeDampening,
   scrollWindow,
   scrollDroppable,
+  getContainerRef,
 }: Args): void => {
   const center: Position = state.current.page.borderBoxCenter;
   const draggable: DraggableDimension =
@@ -41,6 +42,7 @@ export default ({
       subject,
       center,
       shouldUseTimeDampening,
+      getContainerRef,
     });
 
     if (change) {
